@@ -7,6 +7,7 @@ import Signin from './components/Auth/Signin'
 import Dashboard from './components/DashBoard/Dashboard'
 import Blog from './components/Blogs/Blogs'
 import AuthSuccess from './components/Auth/AuthSuccess'
+import Publish from './components/Publish/Publish'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/blog/:blog_id" element={<Blog />} />
+        <Route path="/publish" element={<Publish />} />
       </Route>
     </Routes>
   )
