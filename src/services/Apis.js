@@ -5,3 +5,7 @@ export const AuthPoints = {
     SIGNIN_USING_EMAIL : `${BASE_URL}auth/signinUsingEmail`,
     SIGNIN_USING_GOOGLE : `${BASE_URL}auth/google`,
 }
+
+export const BlogPoints = {
+    PUBLISH: `${BASE_URL}blog/publish`
+}

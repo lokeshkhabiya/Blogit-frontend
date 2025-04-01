@@ -2,7 +2,9 @@ import axios from "axios"
 import { toast } from "react-hot-toast"
 import { useAuthStore } from "../stores/authStore"
 
-export const axiosInstance = axios.create({})
+export const axiosInstance = axios.create({
+    withCredentials: true
+})
 
 export const apiConnector = async (
     method,

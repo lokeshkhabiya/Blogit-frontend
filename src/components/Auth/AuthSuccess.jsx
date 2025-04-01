@@ -6,13 +6,13 @@ import { useAuthStore } from '../../stores/authStore';
 const AuthSuccess = () => {
 
     const navigate = useNavigate();
-    const { login } = useAuthStore();
+    const { login  } = useAuthStore();
 
     useEffect(() => {
         const fetchUserData = async () => {
             const data = await getUserData();
             if (data?.success) {
-                login(data.user);
+                login(data.user, data.token);
                 navigate("/dashboard")
             } else {
                 navigate("/login")

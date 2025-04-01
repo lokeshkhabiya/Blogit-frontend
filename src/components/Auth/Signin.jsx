@@ -23,7 +23,6 @@ const Signin = () => {
 				if (response && response.data) {
 					login(response?.data?.user, response?.data?.token);
 					toast.success(response.data.message);
-					console.log(response.data.message)
 					navigate("/dashboard");
 				}else {
 					throw new Error("Invald response!")

@@ -23,7 +23,6 @@ const Signup = () => {
 
                 if (response && response.data) {
                     toast.success(response.data.message);
-					console.log(response.data.message)
                     navigate("/signin");
                 } else {
                     throw new Error("Invalid response");
