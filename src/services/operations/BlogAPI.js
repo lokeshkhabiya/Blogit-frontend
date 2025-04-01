@@ -19,3 +19,20 @@ export const publishBlog = async( title, description, cover_img, category, conte
         console.log("Error while publishing the blog: ", error);
     }
 }
+
+export const getBlog = async( blog_id, token ) => {
+    try {
+        const response = await apiConnector(
+            'GET',
+            BlogPoints.GET_BLOG,
+            null,
+            { authorization: token },
+            { blog_id: blog_id},
+            null
+        )
+
+        return response
+    } catch (error) {
+        console.log("Error while publishing the blog: ", error);
+    }
+}

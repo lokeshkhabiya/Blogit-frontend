@@ -7,5 +7,6 @@ export const AuthPoints = {
 }
 
 export const BlogPoints = {
-    PUBLISH: `${BASE_URL}blog/publish`
+    PUBLISH: `${BASE_URL}blog/publish`,
+    GET_BLOG: `${BASE_URL}blog/getBlog`
 }
