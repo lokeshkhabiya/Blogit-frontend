@@ -64,7 +64,11 @@ export const initiateGoogleLogin = () => {
 export const getUserData = async () => {
     try {
         const response = await fetch(`${BASE_URL}auth/getUser`, {
-            credentials: 'include'
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
         const data = await response.json();
         return data;
