@@ -61,13 +61,13 @@ export const initiateGoogleLogin = () => {
     window.location.href = `${BASE_URL}auth/google`;
 }
 
-export const getUserData = async () => {
+export const getUserData = async (token) => {
     try {
         const response = await fetch(`${BASE_URL}auth/getUser`, {
             method: 'GET',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
         const data = await response.json();
