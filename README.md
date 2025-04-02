@@ -1,4 +1,4 @@
-# Black Cherie Media Frontend
+# Frontend
 
 This is the frontend application for Black Cherie Media, built with React and Vite.
 
