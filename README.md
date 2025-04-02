@@ -1,12 +1,73 @@
-# React + Vite
+# Black Cherie Media Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for Black Cherie Media, built with React and Vite.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (v18.0.0 or newer recommended)
+- npm or yarn
 
-## Expanding the ESLint configuration
+## Environment Variables
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a `.env` file in the root directory with the following variables:
+
+```
+VITE_UNSPLASH_API_KEY=your_unsplash_api_key
+```
+
+## Installation
+
+1. Clone the repository
+2. Navigate to the frontend directory:
+   ```
+   cd frontend
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+   or if you use yarn:
+   ```
+   yarn
+   ```
+
+## Running the Application
+
+To start the development server:
+
+```
+npm run dev
+```
+
+The application will be available at [http://localhost:5173](http://localhost:5173) by default.
+
+## Building for Production
+
+To create a production build:
+
+```
+npm run build
+```
+
+To preview the production build locally:
+
+```
+npm run preview
+```
+
+## Project Structure
+
+- `src/components/` - React components
+- `src/stores/` - State management using Zustand
+- `src/services/` - API service functions
+- `src/constants/` - Constant values and configurations
+
+## Technologies Used
+
+- React 19
+- Vite 6
+- React Router v7
+- Zustand for state management
+- Tailwind CSS
+- BlockNote for rich text editing
+- Axios for API requests
