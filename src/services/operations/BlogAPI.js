@@ -1,5 +1,3 @@
-import { BASE_URL } from "../../../ApiConnection";
-import { useAuthStore } from "../../stores/authStore";
 import { apiConnector } from "../ApiConnector";
 import { BlogPoints } from "../Apis";
 
@@ -33,6 +31,21 @@ export const getBlog = async( blog_id, token ) => {
 
         return response
     } catch (error) {
-        console.log("Error while publishing the blog: ", error);
+        console.log("Error while getting the blog: ", error);
+    }
+}
+
+export const likeUnlikeBlog = async( blog_id, token ) => {
+    try {
+        const response = await apiConnector(
+            'POST',
+            BlogPoints.LIKE_UNLIKE_BLOG,
+            { blog_id: blog_id },
+            { authorization: token },
+            null,
+            null
+        )
+    } catch (error) {
+        console.log("Error while like / unlike the blog: ", error);
     }
 }

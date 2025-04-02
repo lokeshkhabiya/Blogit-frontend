@@ -8,5 +8,11 @@ export const AuthPoints = {
 
 export const BlogPoints = {
     PUBLISH: `${BASE_URL}blog/publish`,
-    GET_BLOG: `${BASE_URL}blog/getBlog`
+    GET_BLOG: `${BASE_URL}blog/getBlog`,
+    LIKE_UNLIKE_BLOG: `${BASE_URL}blog/likeUnlikeBlog`
+}
+
+export const CommentPoints = {
+    ADDACOMMENT: `${BASE_URL}comment/addAComment`,
+    GETALLCOMMENT: `${BASE_URL}comment/getAllComments`,
 }
