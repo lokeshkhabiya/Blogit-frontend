@@ -49,3 +49,38 @@ export const likeUnlikeBlog = async( blog_id, token ) => {
         console.log("Error while like / unlike the blog: ", error);
     }
 }
+
+export const getAllBlogsBulk = async (page, limit, token) => {
+    try {
+        const response = await apiConnector(
+            'GET',
+            BlogPoints.GET_ALL_BLOGS_BULK,
+            null,
+            { authorization: token },
+            { page: page, limit: limit },
+            null
+        )
+
+        return response; 
+    } catch (error) {
+        console.log("Error while fetching blogs bulk: ", error);
+    }
+}
+
+export const getAllMyBlogs = async ( token ) => {
+    try {
+        const response = await apiConnector(
+            'GET',
+            BlogPoints.GET_ALL_MY_BLOGS,
+            null,
+            { authorization: token },
+            null,
+            null
+        )
+
+        return response; 
+    } catch (error) {
+        console.log("Error while fetching my blogs: ", error);
+    }
+}
+

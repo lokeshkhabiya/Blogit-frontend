@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { PlusCircle, Search, Pencil, LogOut } from "lucide-react";
 import { useAuthStore } from "../../stores/authStore";
 import { useNavigate } from "react-router-dom";
+import ProfileModal from "../Profile/ProfileModal";
 
 const Navbar = ({ searchQuery, setSearchQuery }) => {
     const { user, logout } = useAuthStore(); 
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -75,12 +77,20 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                                     </div>
                                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                                         <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+                                            <button 
+                                                onClick={() => {
+                                                    setIsProfileModalOpen(true);
+                                                    setIsDropdownOpen(false);
+                                                }}
+                                                className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                                            >
                                                 Profile
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                                                onClick={() => navigate("/myblogs")}
+                                            >
                                                 My Blogs
                                             </a>
                                         </li>
@@ -102,6 +112,10 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                     </div>
                 </div>
             </div>
+            <ProfileModal 
+                isOpen={isProfileModalOpen}
+                onClose={() => setIsProfileModalOpen(false)}
+            />
         </nav>
     );
 };
