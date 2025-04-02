@@ -28,6 +28,8 @@ export const getAllComments = async ( blog_id, token ) => {
             { blog_id: blog_id },
             null
         )
+
+        return response; 
     } catch (error) {
         console.log("Erro while getting all comments: ", error);
     }
