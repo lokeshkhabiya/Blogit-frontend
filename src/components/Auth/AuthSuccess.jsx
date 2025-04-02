@@ -15,7 +15,7 @@ const AuthSuccess = () => {
                 login(data.user, data.token);
                 navigate("/dashboard")
             } else {
-                navigate("/login")
+                navigate("/signin")
             }
         }
 
