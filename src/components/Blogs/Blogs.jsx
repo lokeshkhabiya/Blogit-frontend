@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getBlog, likeUnlikeBlog } from "../../services/operations/BlogAPI";
 import { useAuthStore } from "../../stores/authStore";
-import { UNSPLASH_API_KEY } from "../../constants/ApiKeys";
-import axios from "axios";
 import BlogAuthorInfo from "./BlogAuthorInfo";
 import BlogComments from "./BlogComments";
 import { getRandomUnsplashImage } from "../../constants/RandomUnsplashImage";
+import { ArrowLeft } from "lucide-react";
 
 const Blog = () => {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const { token } = useAuthStore();
 	const [blog, setBlog] = useState();
 	const [loading, setLoading] = useState(true);
@@ -77,26 +77,47 @@ const Blog = () => {
                             />
                         </div>
                     )}
+                    <div className="px-4 md:px-8 lg:px-16 pt-4">
+                        <button
+                            onClick={() => navigate("/dashboard")}
+                            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                        >
+                            <ArrowLeft className="w-5 h-5 mr-2" />
+                            Back to Dashboard
+                        </button>
+                    </div>
                     
-                    <div className="flex flex-col md:flex-row justify-center px-4 md:px-8 lg:px-16 py-8 max-w-[1400px] mx-auto">
-                        {/* Author Info Component */}
-                        <BlogAuthorInfo 
-                            author={blog.author}
-                            authorPic={blog.author_pic}
-                            createdAt={blog.created_at}
-                            description={blog.description}
-                            likeCount={likeCount}
-                            isLiked={isLiked}
-                            commentsCount={blog.comments_count}
-                            handleLike={handleLike}
-                            scrollToComments={scrollToComments}
-                        />
+                    <div className="flex flex-col md:flex-row px-4 md:px-8 lg:px-16 py-4 md:py-8 max-w-full md:max-w-[1400px] mx-auto w-full overflow-hidden">
+                        {/* Mobile Title - Only visible on mobile */}
+                        <div className="md:hidden w-full mb-4">
+                            <h1 className="text-2xl sm:text-3xl font-bold mb-3 dark:text-white">{blog.title}</h1>
+                            <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                        </div>
+
+                        {/* Author Info Component - Reordered for mobile */}
+                        <div className="w-full md:w-1/4 md:order-last md:ml-8">
+                            <BlogAuthorInfo 
+                                author={blog.author}
+                                authorPic={blog.author_pic}
+                                createdAt={blog.published_on}
+                                description={blog.description}
+                                likeCount={likeCount}
+                                isLiked={isLiked}
+                                commentsCount={blog.comments_count}
+                                handleLike={handleLike}
+                                scrollToComments={scrollToComments}
+                            />
+                        </div>
                         
-                        <div className="w-full md:w-[75%] mx-auto">
-                            <h1 className="text-4xl font-bold mb-6 dark:text-white">{blog.title}</h1>
-                            <div className="w-full h-px bg-gray-200 dark:bg-gray-700 mb-6"></div>
+                        <div className="w-full md:w-[75%] mt-6 md:mt-0">
+                            {/* Desktop Title - Hidden on mobile */}
+                            <div className="hidden md:block">
+                                <h1 className="text-4xl font-bold mb-6 dark:text-white">{blog.title}</h1>
+                                <div className="w-full h-px bg-gray-200 dark:bg-gray-700 mb-6"></div>
+                            </div>
+                            
                             <div 
-                                className="prose prose-lg max-w-none dark:prose-invert dark:text-white [&>p]:dark:text-white [&>h1]:dark:text-white [&>h2]:dark:text-white [&>h3]:dark:text-white [&>h4]:dark:text-white [&>ul]:dark:text-white [&>ol]:dark:text-white [&>li]:dark:text-white [&>blockquote]:dark:text-white [&>a]:dark:text-blue-400" 
+                                className="prose prose-sm md:prose-lg max-w-none dark:prose-invert dark:text-white [&>p]:dark:text-white [&>h1]:dark:text-white [&>h2]:dark:text-white [&>h3]:dark:text-white [&>h4]:dark:text-white [&>ul]:dark:text-white [&>ol]:dark:text-white [&>li]:dark:text-white [&>blockquote]:dark:text-white [&>a]:dark:text-blue-400 overflow-hidden" 
                                 dangerouslySetInnerHTML={{ __html: blog.htmlContent }}
                             ></div>
                         </div>
@@ -104,11 +125,13 @@ const Blog = () => {
                     
                     {/* Comments Component */}
                     {blogId && blog.comments_count !== undefined && (
-                        <BlogComments 
-                            blog_id={blogId}
-                            commentsCount={blog.comments_count}
-                            comments={[]}
-                        />
+                        <div className="px-4 md:px-0">
+                            <BlogComments 
+                                blog_id={blogId}
+                                commentsCount={blog.comments_count}
+                                comments={[]}
+                            />
+                        </div>
                     )}
                 </div>
             )}
